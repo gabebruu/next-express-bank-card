@@ -56,6 +56,22 @@ nextApp.prepare().then(() => {
     res.status(201).json(novoCartao);
   });
 
+  // PUT /api/cartoes/:id - Atualizar cartão existente
+  app.put('/api/cartoes/:id', (req, res) => {
+    const cartoes = lerCartoes();
+    const id = parseInt(req.params.id);
+    const index = cartoes.findIndex(c => c.id === id);
+
+    if (index === -1) {
+      return res.status(404).json({ erro: 'Cartão não encontrado' });
+    }
+
+    const { nome, numero, validade, cor } = req.body;
+    cartoes[index] = { id, nome, numero, validade, cor };
+    guardarCartoes(cartoes);
+    res.json(cartoes[index]);
+  });
+
   // DELETE /api/cartoes/:id - Remover cartão
   app.delete('/api/cartoes/:id', (req, res) => {
     let cartoes = lerCartoes();
@@ -79,4 +95,3 @@ nextApp.prepare().then(() => {
     console.log(`📡 API de cartões disponível em http://localhost:${PORT}/api/cartoes`);
   });
 });
-

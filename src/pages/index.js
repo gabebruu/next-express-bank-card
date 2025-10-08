@@ -6,18 +6,24 @@ export default function Home() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Aqui você pode adicionar validação se quiser
-    router.push("/cartoes"); // Redireciona para a página de cartões
+    router.push("/cartoes");
   };
 
   return (
-    <div className="h-screen rounded-3xl flex flex-col justify-center text-white px-8 bg-cover bg-center bg-[url('/background.jpg')]">
-      <div className="w-full max-w-sm mx-auto">
-        <h1 className="text-4xl font-light text-center mb-10">
-  Seu Banco Imigrante
-</h1>
+    <div className="h-screen rounded-3xl flex flex-col items-center justify-center text-white px-8 bg-cover bg-center bg-[url('/comunismo.jpg')] relative">
+      {/* Título posicionado acima da imagem */}
+      <h1 className="absolute top-50 text-5xl font-light text-center w-full">
+        SBI - Seu Banco Imigrante
+      </h1>
 
-        <form onSubmit={handleLogin} className="flex flex-col space-y-6">
+      <div className="w-full max-w-sm flex flex-col items-center mt-10">
+        <img
+          src="/Lula.webp"
+          alt="Avatar"
+          className="w-40 h-40 rounded-full object-cover mb-6 shadow-[0_0_20px_5px_rgba(239,68,68,0.6)]"
+        />
+
+        <form onSubmit={handleLogin} className="flex flex-col space-y-6 w-full">
           <input
             type="text"
             placeholder="Username"
@@ -31,7 +37,7 @@ export default function Home() {
 
           <button
             type="submit"
-            className="w-full py-2 bg-gray-900 text-white text-lg font-semibold rounded-xl mt-3 hover:bg-gray-900 transition-colors"
+            className="w-full py-2 bg-red-700 text-white text-lg font-semibold rounded-xl mt-3 hover:bg-red-800 transition-colors"
           >
             Login
           </button>
@@ -40,7 +46,7 @@ export default function Home() {
         <div className="text-center mt-6">
           <Link
             href="/recuperar"
-            className="text-sm text-shadow-gray-300 hover:underline"
+            className="text-sm px-3 py-1 bg-red-500/30 rounded-md hover:underline transition"
           >
             Esqueci minha senha
           </Link>

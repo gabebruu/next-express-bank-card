@@ -1,107 +1,107 @@
-// Carregar todos os produtos
-export async function carregarProdutosAPI() {
+// Carregar todos os cartões
+export async function carregarCartoesAPI() {
   try {
-    const response = await fetch('/api/produtos')
-    
+    const response = await fetch('/api/cartoes');
+
     if (!response.ok) {
-      console.error('Erro na resposta:', response.status, response.statusText)
-      throw new Error('Erro ao carregar produtos')
+      console.error('Erro na resposta:', response.status, response.statusText);
+      throw new Error('Erro ao carregar cartões');
     }
-    
-    const data = await response.json()
-    return data
+
+    const data = await response.json();
+    return data;
 
   } catch (error) {
-    console.error('Erro ao carregar produtos:', error)
-    throw error
+    console.error('Erro ao carregar cartões:', error);
+    throw error;
   }
 }
 
-// Carregar produto por ID
-export async function carregarProdutoPorIdAPI(id) {
+// Carregar cartão por ID
+export async function carregarCartaoPorIdAPI(id) {
   try {
-    const response = await fetch(`/api/produtos/${id}`)
-    
+    const response = await fetch(`/api/cartoes/${id}`);
+
     if (!response.ok) {
-      console.error('Erro na resposta:', response.status, response.statusText)
-      throw new Error('Erro ao carregar produto')
+      console.error('Erro na resposta:', response.status, response.statusText);
+      throw new Error('Erro ao carregar cartão');
     }
-    
-    const data = await response.json()
-    return data
+
+    const data = await response.json();
+    return data;
 
   } catch (error) {
-    console.error('Erro ao carregar produto:', error)
-    throw error
+    console.error('Erro ao carregar cartão:', error);
+    throw error;
   }
 }
 
-// Adicionar novo produto
-export async function adicionarProdutoAPI(dadosProduto) {
+// Adicionar novo cartão
+export async function adicionarCartaoAPI(dadosCartao) {
   try {
-    const response = await fetch('/api/produtos', {
+    const response = await fetch('/api/cartoes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(dadosProduto)
-    })
+      body: JSON.stringify(dadosCartao)
+    });
 
     if (!response.ok) {
-      console.error('Erro na resposta:', response.status, response.statusText)
-      throw new Error('Erro ao adicionar produto')
+      console.error('Erro na resposta:', response.status, response.statusText);
+      throw new Error('Erro ao adicionar cartão');
     }
-    
-    const resultado = await response.json()
-    return resultado
+
+    const resultado = await response.json();
+    return resultado;
 
   } catch (error) {
-    console.error('Erro ao adicionar produto:', error)
-    throw error
+    console.error('Erro ao adicionar cartão:', error);
+    throw error;
   }
 }
 
-// Atualizar produto existente
-export async function atualizarProdutoAPI(id, dadosProduto) {
+// Atualizar cartão existente
+export async function atualizarCartaoAPI(id, dadosCartao) {
   try {
-    const response = await fetch(`/api/produtos/${id}`, {
+    const response = await fetch(`/api/cartoes/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(dadosProduto)
-    })
+      body: JSON.stringify(dadosCartao)
+    });
 
     if (!response.ok) {
-      console.error('Erro na resposta:', response.status, response.statusText)
-      throw new Error('Erro ao atualizar produto')
+      console.error('Erro na resposta:', response.status, response.statusText);
+      throw new Error('Erro ao atualizar cartão');
     }
-    
-    const resultado = await response.json()
-    return resultado
+
+    const resultado = await response.json();
+    return resultado;
 
   } catch (error) {
-    console.error('Erro ao atualizar produto:', error)
-    throw error
+    console.error('Erro ao atualizar cartão:', error);
+    throw error;
   }
 }
 
-// Eliminar produto
-export async function eliminarProdutoAPI(id) {
+// Eliminar cartão
+export async function eliminarCartaoAPI(id) {
   try {
-    const response = await fetch(`/api/produtos/${id}`, { 
-      method: 'DELETE' 
-    })
-    
+    const response = await fetch(`/api/cartoes/${id}`, {
+      method: 'DELETE'
+    });
+
     if (!response.ok) {
-      console.error('Erro na resposta:', response.status, response.statusText)
-      throw new Error('Erro ao eliminar produto')
+      console.error('Erro na resposta:', response.status, response.statusText);
+      throw new Error('Erro ao eliminar cartão');
     }
 
-    return true
+    return true;
 
   } catch (error) {
-    console.error('Erro ao eliminar produto:', error)
-    throw error
+    console.error('Erro ao eliminar cartão:', error);
+    throw error;
   }
 }

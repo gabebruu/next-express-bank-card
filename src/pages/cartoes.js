@@ -1,37 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {
+  carregarCartoesAPI,
+  adicionarCartaoAPI,
+  removerCartaoAPI
+} from "../services/api"; // ajusta o caminho conforme tua estrutura
 
 export default function Cartoes() {
-  const [cartoes, setCartoes] = useState([
-    {
-      id: 1,
-      nome: "Vicktoria",
-      numero: "**** **** **** 1234",
-      validade: "12/28",
-      cor: "from-gray-400 to-slate-800"
-    },
-    {
-      id: 2,
-      nome: "Bruna Gabriela",
-      numero: "**** **** **** 5678",
-      validade: "08/27",
-      cor: "from-yellow-400 to-gray-500"
-    },
-    {
-      id: 3,
-      nome: "Diego Menezes",
-      numero: "**** **** **** 9012",
-      validade: "03/30",
-      cor: "from-pink-500 to-purple-600"
-    },
-    {
-      id: 4,
-      nome: "Rodolfo",
-      numero: "**** **** **** 9012",
-      validade: "03/30",
-      cor: "from-purple-500 to-gray-700"
-    }
-  ]);
-
+  const [cartoes, setCartoes] = useState([]);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [novoCartao, setNovoCartao] = useState({
     nome: "",
@@ -40,23 +15,44 @@ export default function Cartoes() {
     cor: "from-indigo-500 to-blue-700"
   });
 
-  const adicionarCartao = () => {
+  // Carregar cartões do backend ao iniciar
+  useEffect(() => {
+    async function carregar() {
+      try {
+        const dados = await carregarCartoesAPI();
+        setCartoes(dados);
+      } catch (error) {
+        console.error("Erro ao carregar cartões:", error);
+      }
+    }
+    carregar();
+  }, []);
+
+  // Adicionar cartão via API
+  const adicionarCartao = async () => {
     if (!novoCartao.nome || !novoCartao.numero || !novoCartao.validade) return;
-    const novo = {
-      ...novoCartao,
-      id: Date.now()
-    };
-    setCartoes([...cartoes, novo]);
-    setNovoCartao({ nome: "", numero: "", validade: "", cor: "from-indigo-500 to-blue-700" });
-    setMostrarFormulario(false);
+    try {
+      const cartaoCriado = await adicionarCartaoAPI(novoCartao);
+      setCartoes([...cartoes, cartaoCriado]);
+      setNovoCartao({ nome: "", numero: "", validade: "", cor: "from-indigo-500 to-blue-700" });
+      setMostrarFormulario(false);
+    } catch (error) {
+      console.error("Erro ao adicionar cartão:", error);
+    }
   };
 
-  const removerCartao = (id) => {
-    setCartoes(cartoes.filter((cartao) => cartao.id !== id));
+  // Remover cartão via API
+  const removerCartao = async (id) => {
+    try {
+      await removerCartaoAPI(id);
+      setCartoes(cartoes.filter((cartao) => cartao.id !== id));
+    } catch (error) {
+      console.error("Erro ao remover cartão:", error);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg p-6">
       {/* Título + botão “+” no topo */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-gray-800">Meus Cartões</h1>

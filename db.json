@@ -1,23 +1,30 @@
 [
   {
     "id": 1,
-    "nome": "Cartão Platinum",
+    "nome": "Vicktoria",
     "numero": "**** **** **** 1234",
     "validade": "12/28",
-    "cor": "from-blue-500 to-indigo-600"
+    "cor": "from-gray-400 to-slate-800"
   },
   {
     "id": 2,
-    "nome": "Cartão Gold",
+    "nome": "Bruna Gabriela",
     "numero": "**** **** **** 5678",
     "validade": "08/27",
-    "cor": "from-green-400 to-teal-500"
+    "cor": "from-yellow-400 to-gray-500"
   },
   {
     "id": 3,
-    "nome": "Cartão Black",
+    "nome": "Diego Menezes",
     "numero": "**** **** **** 9012",
     "validade": "03/30",
     "cor": "from-pink-500 to-purple-600"
+  },
+  {
+    "id": 4,
+    "nome": "Rodolfo",
+    "numero": "**** **** **** 9012",
+    "validade": "03/30",
+    "cor": "from-purple-500 to-gray-700"
   }
 ]
